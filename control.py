@@ -27,7 +27,7 @@ def main():
     """Begin cassie bipedal control."""
 
     # Load the model and data
-    model = mujoco.MJModel.from_xml_path("agility_cassie/scene.xml")
+    model = mujoco.MjModel.from_xml_path("agility_cassie/scene.xml")
     data = mujoco.MjData(model)
 
     # Override the simulation timestep
@@ -47,7 +47,7 @@ def main():
         "left-hip-roll",  # hinge -> actuated
         "left-hip-yaw",  # hinge -> actuated
         "left-hip-pitch",  # hinge -> actuated
-        "left-achilles-rod"  # ball
+        "left-achilles-rod",  # ball
         "left-knee",  # hinge -> actuated
         "left-shin",  # hinge
         "left-tarsus",  # hinge
@@ -59,7 +59,7 @@ def main():
         "right-hip-roll",  # hinge -> actuated
         "right-hip-yaw",  # hinge -> actuated
         "right-hip-pitch",  # hinge -> actuated
-        "right-achilles-rod"  # ball
+        "right-achilles-rod",  # ball
         "right-knee",  # hinge -> actuated
         "right-shin",  # hinge
         "right-tarsus",  # hinge
@@ -69,7 +69,7 @@ def main():
         "right-foot",  # hinge -> actuated
     ]
     dof_ids = np.array([model.joint(name).id for name in joint_names])
-    
+
     # Actuator names are not all the joint names in this case
     actuator_names = [
         "left-hip-roll",
@@ -100,14 +100,17 @@ def main():
          mujoco.mj_resetDataKeyframe(model, data, key_id)
 
          # Initialize the camera view to that of the free camera.
-         # mujoco.mjv_defaultFreeCamera(model, viewer.cam)
+         mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 
          # Toggle site frame visualization.
          viewer.opt.frame = mujoco.mjtFrame.mjFRAME_SITE
 
          while viewer.is_running():
-             pass
-         
+             # step_start = time.time()
+
+             # Set the target position of the end-effector site
+
+
 
 if __name__ == "__main__":
     main()
