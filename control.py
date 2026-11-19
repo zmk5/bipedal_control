@@ -109,6 +109,7 @@ def main():
              # step_start = time.time()
 
              # Set the target position of the end-effector site
+             pass
 
 
 
